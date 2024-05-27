@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${PSQL.PORT}/${PSQL.DB}
+    driver-class-name: org.postgresql.Driver
+    username: ${PSQL.USERNAME}
+    password: ${PSQL.PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    open-in-view: false
+
+  profiles:
+    active: dev
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT.SECRET-KEY}
+      expiration: ${JWT.EXPIRATION}
+      refresh-token:
+        expiration: ${JWT.REFRESH-TOKEN.EXPIRATION}
+
+server:
+  error:
+    include-stacktrace: never
